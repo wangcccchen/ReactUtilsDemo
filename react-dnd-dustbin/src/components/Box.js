@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DragSource } from 'react-dnd';
-
 import ItemTypes from '../types';
 
 const style = {
@@ -12,7 +11,7 @@ const style = {
 	marginBottom: '1.5rem',
 	cursor: 'move',
 	float: 'left'
-}
+};
 
 const boxSource = {
 	/**
@@ -39,7 +38,9 @@ const boxSource = {
 
 		// 如果 drop 结果存在，就弹出 alert 提示
 		if (dropResult) {
-			alert(`You dropped ${item.name} into ${dropResult.name}!`);
+			let updateBox = props.box.filter(v => v !== item.name);
+			props.handleEndResult(item.name,dropResult.name);
+			props.handleUpdateBox(updateBox);
 		}
 	},
 }
