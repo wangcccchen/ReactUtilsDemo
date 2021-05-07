@@ -48,30 +48,27 @@ class Dustbin extends React.Component {
         connectDropTarget: PropTypes.func.isRequired
     }
 
-	handleDeleteTag = (item) => {
-		console.log(`e`, item)
-	}
-
 	render() {
-		const { canDrop, isOver, connectDropTarget, tagValue } = this.props;
+		const { canDrop, isOver, connectDropTarget, tagValue, handleDeleteTag } = this.props;
 		const isActive = canDrop && isOver;
+		console.log(`tagValue`, tagValue)
 
 		// let backgroundColor = '#222';		
 		let backgroundColor = 'grey';
 		// 拖拽组件此时正处于 drag target 区域时，当前组件背景色变为 darkgreen
 		if (isActive) {
-			backgroundColor = 'darkgreen';
+			// backgroundColor = 'darkgreen';
 		} 
 		// 当前组件可以放置 drag source 时，背景色变为 pink
 		else if (canDrop) {
-			backgroundColor = 'pink';
+			// backgroundColor = 'pink';
 		}
 
 		// 使用 connectDropTarget 包裹住 DOM 节点，使其可以接收对应的 drag source 组件
 		// connectDropTarget 包裹住的 DOM 节点才能接收 drag source 组件
 		return connectDropTarget && connectDropTarget(
 			<div style={{ ...style, backgroundColor }}>
-				{tagValue.map(item => (<Tag key={item} closable onClose={()=>this.handleDeleteTag(item)} style={{ border: '1px solid black', padding: '10px',margin: '5px'}}>{item}</Tag>))}
+				{tagValue.map(item => (<Tag key={item} closable onClose={()=>handleDeleteTag(item)} style={{ border: '1px solid black', padding: '10px',margin: '5px'}}>{item}</Tag>))}
 				{/* {isActive ? 'Release to drop' : 'Drag a box here'} */}
 			</div>
 		);

@@ -48,15 +48,8 @@ class Dustbin2 extends React.Component {
         connectDropTarget: PropTypes.func.isRequired
     }
 
-	handleDeleteTag = (e) => {
-		e.preventDefault();
-		console.log(`e`, e)
-		// this.props.tagValue = this.props.tagValue.filter(v => v !== item);
-		// console.log(`item`, this.props.tagValue);
-	}
-
 	render() {
-		const { canDrop, isOver, connectDropTarget, tagValue } = this.props;
+		const { canDrop, isOver, connectDropTarget, tagValue, handleDeleteTag } = this.props;
 		const isActive = canDrop && isOver;
 
 		// let backgroundColor = '#222';		
@@ -74,7 +67,7 @@ class Dustbin2 extends React.Component {
 		// connectDropTarget 包裹住的 DOM 节点才能接收 drag source 组件
 		return connectDropTarget && connectDropTarget(
 			<div style={{ ...style, backgroundColor }}>
-				{tagValue.map(item => (<Tag key={item} closable onClose={this.handleDeleteTag} style={{ border: '1px solid black', padding: '10px',margin: '5px'}}>{item}</Tag>))}
+				{tagValue.map(item => (<Tag key={item} closable onClose={()=>handleDeleteTag(item)} style={{ border: '1px solid black', padding: '10px',margin: '5px'}}>{item}</Tag>))}
 				{/* {isActive ? 'Release to drop' : 'Drag a box here'} */}
 			</div>
 		);

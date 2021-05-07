@@ -38,9 +38,9 @@ const boxSource = {
 
 		// 如果 drop 结果存在，就弹出 alert 提示
 		if (dropResult) {
-			let updateBox = props.box.filter(v => v !== item.name);
+			// let updateBox = props.box.filter(v => v !== item.name);
 			props.handleEndResult(item.name,dropResult.name);
-			props.handleUpdateBox(updateBox);
+			// props.handleUpdateBox(updateBox);
 		}
 	},
 }
